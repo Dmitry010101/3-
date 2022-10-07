@@ -46,7 +46,7 @@ namespace ConsoleApp4
                             int g = 1;
                             do
                             {
-                                Console.Write((b * g).ToString() + "\t");
+                                Console.Write((b * g) + "\t");
                                 g++;
                             }
                             while (g <= 10);
