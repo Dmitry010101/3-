@@ -1,328 +1,227 @@
-﻿namespace Piano
+﻿using myfirstapp;
+
+namespace dnevnik
 {
     internal class Program
     {
-     
         static void Main()
         {
-            while (true)
-            {
-                Console.WriteLine(" Для выбора актавы нажмите на одну из клавиш:'F3' 'F4', 'F5' или 'F6'.");
-                ConsoleKeyInfo klavish = Console.ReadKey();
-                if (klavish.Key == ConsoleKey.F3)
-                {
-                    Octave3();
-                }
-
-                if (klavish.Key == ConsoleKey.F4)
-                {
-                    Octave4();
-                }
-                if (klavish.Key == ConsoleKey.F5)
-                {
-                    Octave5();
-                }
-                if (klavish.Key == ConsoleKey.F6)
-                {
-                    Octave6();
-                }
-                if (klavish.Key == ConsoleKey.Escape)
-                {
-                    break;
-                }
-            }
+            c();
         }
-        static void Octave3()
+        static void c(DateTime Date = new DateTime())
         {
-            int[] Octave3 = new int[] { 131, 139, 147, 156, 165, 175,
-                                           185, 196, 208, 220, 233, 250 };
-            zvuk11(Octave3);
-        }
-        static void zvuk11(int[] Octave3)
-        {
-            Console.WriteLine("3 октава");
-            ConsoleKeyInfo klavis3 = Console.ReadKey();
-            while (klavis3.Key != ConsoleKey.Escape)
+            DateTime d = new DateTime();
+            if (d == Date)
             {
-                switch (klavis3.Key)
-                {
-                    case ConsoleKey.A:
-                        sound(Octave3[0]);
-                        Console.Clear();
-                        break;
-                    case ConsoleKey.Q:
-                        sound(Octave3[1]);
-                        Console.Clear();
-                        break;
-                    case ConsoleKey.S:
-                        sound(Octave3[2]);
-                        Console.Clear();
-                        break;
-                    case ConsoleKey.E:
-                        sound(Octave3[3]);
-                        Console.Clear();
-                        break;
-                    case ConsoleKey.D:
-                        sound(Octave3[4]);
-                        Console.Clear();
-                        break;
-                    case ConsoleKey.F:
-                        sound(Octave3[5]);
-                        Console.Clear();
-                        break;
-                    case ConsoleKey.R:
-                        sound(Octave3[6]);
-                        Console.Clear();
-                        break;
-                    case ConsoleKey.G:
-                        sound(Octave3[7]);
-                        Console.Clear();
-                        break;
-                    case ConsoleKey.T:
-                        sound(Octave3[8]);
-                        Console.Clear();
-                        break;
-                    case ConsoleKey.H:
-                        sound(Octave3[9]);
-                        Console.Clear();
-                        break;
-                    case ConsoleKey.J:
-                        sound(Octave3[10]);
-                        Console.Clear();
-                        break;
-                    case ConsoleKey.U:
-                        sound(Octave3[11]);
-                        Console.Clear();
-                        break;
-                }
-                klavis3 = Console.ReadKey();
+                Date = new DateTime(2022, 10, 12);
             }
-
-            static void sound(int b)
+            int position = 0;
+            Menu(Date);
+            ConsoleKeyInfo key = Console.ReadKey();
+            while (key.Key != ConsoleKey.Enter)
             {
-                Console.Beep(b, 250);
+                if (key.Key == ConsoleKey.UpArrow)
+                {
+                    position--;
+                    if (position < 1)
+                    {
+                        position = 2;
+                    }
+                }
+                else if (key.Key == ConsoleKey.DownArrow)
+                {
+                    position++;
+                    if (position > 2)
+                    {
+                        position = 1;
+                    }
+                }
+                else if (key.Key == ConsoleKey.LeftArrow || key.Key == ConsoleKey.RightArrow)
+                {
+                    b(key);
+                    Console.Clear();
+                }
                 Console.Clear();
+                Menu(Date);
+                Console.SetCursorPosition(0, position);
+                Console.WriteLine("->");
+                key = Console.ReadKey();
             }
-        }
-
-
-        static void Octave4()
-        {
-            int[] Octave4 = new int [] { 262, 277, 293, 311, 329, 349,
-                                           370, 392, 415, 440, 466, 493 };
-            zvuk1(Octave4);
-        }
-        static void zvuk1(int[] Octave4)
-        {
-            Console.WriteLine("4 октава");
-            ConsoleKeyInfo klavis4 = Console.ReadKey();
-            while (klavis4.Key != ConsoleKey.Escape)
-            {
-                switch (klavis4.Key)
-                {
-                    case ConsoleKey.A:
-                        sound(Octave4[0]);
-                        Console.Clear();
-                        break;
-                    case ConsoleKey.Q:
-                        sound(Octave4[1]);
-                        Console.Clear();
-                        break;
-                    case ConsoleKey.S:
-                        sound(Octave4[2]);
-                        Console.Clear();
-                        break;
-                    case ConsoleKey.E:
-                        sound(Octave4[3]);
-                        Console.Clear();
-                        break;
-                    case ConsoleKey.D:
-                        sound(Octave4[4]);
-                        Console.Clear();
-                        break;
-                    case ConsoleKey.F:
-                        sound(Octave4[5]);
-                        Console.Clear();
-                        break;
-                    case ConsoleKey.R:
-                        sound(Octave4[6]);
-                        Console.Clear();
-                        break;
-                    case ConsoleKey.G:
-                        sound(Octave4[7]);
-                        Console.Clear();
-                        break;
-                    case ConsoleKey.T:
-                        sound(Octave4[8]);
-                        Console.Clear();
-                        break;
-                    case ConsoleKey.H:
-                        sound(Octave4[9]);
-                        Console.Clear();
-                        break;
-                    case ConsoleKey.J:
-                        sound(Octave4[10]);
-                        Console.Clear();
-                        break;
-                    case ConsoleKey.U:
-                        sound(Octave4[11]);
-                        Console.Clear();
-                        break;
-                }
-                klavis4 = Console.ReadKey();
-            }
-            
-            static void sound(int b)
-            {
-                Console.Beep(b, 250);
-                Console.Clear();
-            }
-        }
-
-        static void Octave5()
-        {
-            int[] Octave5 = new int[] { 523, 554, 587, 622, 659, 699,
-                                           740, 784, 831, 880, 932, 988 };
-            zvuk2(Octave5);
-        }
-        static void zvuk2(int[] Ovtave5)
-        {
-            Console.WriteLine("5 октава");
-            ConsoleKeyInfo klavisg5 = Console.ReadKey();
-            while (klavisg5.Key != ConsoleKey.Escape)
-            {
-                switch (klavisg5.Key)
-                {
-                    case ConsoleKey.A:
-                        zvuk(Ovtave5[0]);
-                        Console.Clear();
-                        break;
-                    case ConsoleKey.Q:
-                        zvuk(Ovtave5[1]);
-                        Console.Clear();
-                        break;
-                    case ConsoleKey.S:
-                        zvuk(Ovtave5[2]);
-                        Console.Clear();
-                        break;
-                    case ConsoleKey.E:
-                        zvuk(Ovtave5[3]);
-                        Console.Clear();
-                        break;
-                    case ConsoleKey.D:
-                        zvuk(Ovtave5[4]);
-                        Console.Clear();
-                        break;
-                    case ConsoleKey.F:
-                        zvuk(Ovtave5[5]);
-                        Console.Clear();
-                        break;
-                    case ConsoleKey.R:
-                        zvuk(Ovtave5[6]);
-                        Console.Clear();
-                        break;
-                    case ConsoleKey.G:
-                        zvuk(Ovtave5[7]);
-                        Console.Clear();
-                        break;
-                    case ConsoleKey.T:
-                        zvuk(Ovtave5[8]);
-                        Console.Clear();
-                        break;
-                    case ConsoleKey.H:
-                        zvuk(Ovtave5[9]);
-                        Console.Clear();
-                        break;
-                    case ConsoleKey.J:
-                        zvuk(Ovtave5[10]);
-                        Console.Clear();
-                        break;
-                    case ConsoleKey.U:
-                        zvuk(Ovtave5[11]);
-                        Console.Clear();
-                        break;
-                }
-                klavisg5 = Console.ReadKey();
-            }
-         
-        }
-        static void zvuk(int b)
-        {
-            Console.Beep(b, 250);
             Console.Clear();
+            if (position == 1 || position == 2)
+            {
+                Menu(Date, position);
+            }
+        }
+        static void b(ConsoleKeyInfo key, DateTime Date = new DateTime())
+        {
+            DateTime d = new DateTime();
+            if (d == Date)
+            {
+                Date = new DateTime(2022, 10, 12);
+            }
+            if (key.Key == ConsoleKey.LeftArrow)
+            {
+                while (key.Key != ConsoleKey.RightArrow)
+                {
+                    if (key.Key == ConsoleKey.LeftArrow)
+                    {
+                        Console.Clear();
+                        Date = Date.AddDays(-1);
+
+                        Menu(Date);
+                        key = Console.ReadKey();
+                        if (key.Key == ConsoleKey.DownArrow)
+                        {
+                            Console.Clear();
+                            c(Date);
+                        }
+                        else if (key.Key == ConsoleKey.UpArrow)
+                        {
+                            Console.Clear();
+                            c(Date);
+                        }
+                    }
+                    Console.Clear();
+                }
+                Console.Clear();
+                b(key, Date);
+            }
+            else if (key.Key == ConsoleKey.RightArrow)
+            {
+                while (key.Key != ConsoleKey.LeftArrow)
+                {
+                    if (key.Key == ConsoleKey.RightArrow)
+                    {
+                        Console.Clear();
+                        Date = Date.AddDays(+1);
+                        Menu(Date);
+                        key = Console.ReadKey();
+                        if (key.Key == ConsoleKey.DownArrow)
+                        {
+                            Console.Clear();
+                            c(Date);
+                        }
+                        else if (key.Key == ConsoleKey.UpArrow)
+                        {
+                            Console.Clear();
+                            c(Date);
+                        }
+                    }
+                    Console.Clear();
+                }
+                Console.Clear();
+                b(key, Date);
+            }
+            key = Console.ReadKey();
+        }
+        static void Menu(DateTime dayDate = new DateTime(), int position = 0)
+        {
+            DateTime e = new DateTime();
+            if (e == dayDate)
+            {
+                dayDate = new DateTime(2022, 10, 12);
+            }
+            a one = new a()
+            {
+                name = "  Cходить домой ",
+                osnova = "Нужно переодеться",
+                vremi = new DateTime(2022, 10, 12)
+            };
+            a two = new a()
+            {
+                name = "  Cходить в мираторг ",
+                osnova = "Купить пиццу",
+                vremi = new DateTime(2022, 10, 12)
+            };
+            a three = new a()
+            {
+                name = "  Сходить в мак ",
+                osnova = "Купить бургер",
+                vremi = new DateTime(2022, 10, 13)
+            };
+            a four = new a()
+            {
+                name = "  Сходить в супермаркет",
+                osnova = "Купить булочку",
+                vremi = new DateTime(2022, 10, 13)
+            };
+            a fif = new a()
+            {
+                name = "  Идти на переменну ",
+                osnova = "Учить компьютерные сети ",
+                vremi = new DateTime(2022, 10, 14)
+            };
+            a six = new a()
+            {
+                name = "  Сходить на заправку на нежинской",
+                osnova = "Купить чипсиков второй раз",
+                vremi = new DateTime(2022, 10, 14)
+            };
+            a seven = new a()
+            {
+                name = "  Сходить в магазин",
+                osnova = "Купить чипсиков ",
+                vremi = new DateTime(2022, 10, 15)
+            };
+            a eight = new a()
+            {
+                name = "  Сходить на поле",
+                osnova = "Поиграть в мяч",
+                vremi = new DateTime(2022, 10, 15)
+            };
+            
+            a nine = new a()
+            {
+                name = "  Сходить в боулинг",
+                osnova = "Покидать шары",
+                vremi = new DateTime(2022, 10, 16)
+            };
+            a ten = new a()
+            {
+                name = "  Сходить на каток",
+                osnova = "Покататься на коньках ",
+                vremi = new DateTime(2022, 10, 16)
+            };
+           
+           
+            List<a> List = new List<a>()
+            {
+                one, two, three, four, fif, six, seven,  eight, nine, ten
+            };
+            List<a> day2 = List.Where(x => x.vremi == dayDate).ToList();
+            if (position == 0)
+            {
+                Console.WriteLine(dayDate);
+                foreach (a  day in day2)
+                {
+                    Console.WriteLine(day.name);
+                }
+            }
+            else
+            {
+                a chislo = day2[position - 1];
+                Console.WriteLine(chislo.name);
+                Console.WriteLine("---------------------------------");
+                Console.WriteLine(chislo.osnova);
+                Console.WriteLine("Дата окончания: " + chislo.vremi);
+                ConsoleKeyInfo key = Console.ReadKey();
+                if (key.Key == ConsoleKey.Escape)
+                {
+                    Console.Clear();
+                    c(dayDate);
+                }
+                else
+                {
+                    while (key.Key != ConsoleKey.Escape)
+                    {
+                        Console.Clear();
+                        Menu(dayDate, position);
+                    }
+                }
+            }
+
         }
 
-        static void Octave6()
-        {
-            int[] Octave6 = new int[] { 1047, 1109, 1175, 1245, 1319, 1397,
-                                           1480, 1568, 1661, 1760, 1865, 1976 };
-            zvuk3(Octave6);
-        }
-        static void zvuk3(int[] Octave6)
-        {
-            Console.WriteLine("6 октава");
-            ConsoleKeyInfo klavisg6= Console.ReadKey();
-            while (klavisg6.Key != ConsoleKey.Escape)
-            {
-                switch (klavisg6.Key)
-                {
-                    case ConsoleKey.A:
-                        zvuk(Octave6[0]);
-                        Console.Clear();
-                        break;
-                    case ConsoleKey.Q:
-                        zvuk(Octave6[1]);
-                        Console.Clear();
-                        break;
-                    case ConsoleKey.S:
-                        zvuk(Octave6[2]);
-                        Console.Clear();
-                        break;
-                    case ConsoleKey.E:
-                        zvuk(Octave6[3]);
-                        Console.Clear();
-                        break;
-                    case ConsoleKey.D:
-                        zvuk(Octave6[4]);
-                        Console.Clear();
-                        break;
-                    case ConsoleKey.F:
-                        zvuk(Octave6[5]);
-                        Console.Clear();
-                        break;
-                    case ConsoleKey.R:
-                        zvuk(Octave6[6]);
-                        Console.Clear();
-                        break;
-                    case ConsoleKey.G:
-                        zvuk(Octave6[7]);
-                        Console.Clear();
-                        break;
-                    case ConsoleKey.T:
-                        zvuk(Octave6[8]);
-                        Console.Clear();
-                        break;
-                    case ConsoleKey.H:
-                        zvuk(Octave6[9]);
-                        Console.Clear();
-                        break;
-                    case ConsoleKey.J:
-                        zvuk(Octave6[10]);
-                        Console.Clear();
-                        break;
-                    case ConsoleKey.U:
-                        zvuk(Octave6[11]);
-                        Console.Clear();
-                        break;
-                }
-                
-            }
-            
-            static void zvuk(int b)
-            {
-                Console.Beep(b, 250);
-                Console.Clear();
-            }
-        }
     }
 }
